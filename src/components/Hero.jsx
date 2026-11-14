@@ -1,0 +1,26 @@
+import { Link } from "react-router-dom";
+import { siteInfo, img } from "../data/siteInfo";
+
+export default function Hero() {
+  return (
+    <section className="hero" aria-labelledby="hero-title">
+      <img
+        className="hero__bg"
+        src={img("site/torta-gialla.png")}
+        alt=""
+        fetchpriority="high"
+      />
+      <div className="hero__overlay" />
+      <div className="container hero__content">
+        <span className="eyebrow eyebrow--light">
+          {siteInfo.name} · {siteInfo.tagline}
+        </span>
+        <h1 id="hero-title">La dolcezza della tradizione, ogni giorno.</h1>
+        <p>{siteInfo.description}</p>
+        <Link to="/prodotti" className="btn btn--gold">
+          Scopri i nostri prodotti
+        </Link>
+      </div>
+    </section>
+  );
+}
