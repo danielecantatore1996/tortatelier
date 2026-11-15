@@ -20,6 +20,7 @@ npm run images     # rigenera le immagini segnaposto
 - Torte: la pagina `src/pages/Torte.jsx` mostra le foto della cartella `src/assets/product-gallery/torte/`.
 - Catering: la pagina `src/pages/Catering.jsx` mostra le foto della cartella `src/assets/catering/` (JPEG o WebP); le modifiche saranno incluse nella prossima build.
 - Natale: la pagina `src/pages/Natale.jsx` mostra le foto della cartella `src/assets/natale/` (JPEG o WebP). Il catalogo scaricabile è `public/catalogo-natale-2026.pdf`; aggiorna anche il testo e il collegamento nella pagina quando viene sostituito.
+- Per le foto delle gallerie, usa nomi come `001-croissant-farcito-su-un-piattino.jpg`: il numero iniziale determina l'ordine e la descrizione diventa il testo ALT. Per nomi diversi viene usato un ALT generico della categoria.
 - Foto reali ricevute: `public/images/site/` (Luca e Carlo, interni, torta); foto di esempio aggiuntive: `public/images/products/` e `public/images/gallery/`
 - Colori e font: variabili in `src/styles/global.css`
 - Testi delle pagine: `src/pages/`

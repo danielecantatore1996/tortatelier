@@ -1,3 +1,5 @@
+import { photoAlt } from './photoAlt';
+
 export const categories = [
   { id: 'biscotteria', label: 'Biscotteria', alt: 'Biscotteria artigianale' },
   { id: 'colazione', label: 'Colazione', alt: 'Dolci per la colazione' },
@@ -19,7 +21,7 @@ export const products = categories.flatMap((category) =>
       id: path,
       category: category.id,
       image,
-      alt: `${category.alt} di Tortatelier, foto ${index + 1}`,
+      alt: photoAlt(path, `${category.alt} di Tortatelier, foto ${index + 1}`),
     }))
 );
 

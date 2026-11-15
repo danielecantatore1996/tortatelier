@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, access } from 'node:fs/promises';
 import { join } from 'node:path';
+import { photoAlt } from '../src/data/photoAlt.js';
 
 const pages = [
   ['', 'L&#x27; arte di creare momenti indimenticabili.'],
@@ -71,4 +72,22 @@ test('la sitemap elenca gli indirizzi reali e il dominio resta configurato', asy
   assert.match(robots, /Sitemap: https:\/\/www\.tortatelier\.it\/sitemap\.xml/);
   assert.doesNotMatch(robots, /^Disallow:\s*\/$/m);
   assert.equal((await readFile('dist/CNAME', 'utf8')).trim(), 'www.tortatelier.it');
+});
+
+test('i nomi descrittivi diventano ALT e le nuove foto senza descrizione hanno un fallback', () => {
+  assert.equal(photoAlt('../assets/catering/004-tavolo-con-bicchieri.jpeg', 'Foto catering 4'), 'Tavolo con bicchieri');
+  assert.equal(photoAlt('../assets/catering/nuova-foto.webp', 'Foto catering 5'), 'Foto catering 5');
+});
+
+test('le gallerie prerenderizzate mostrano ALT descrittivi per le foto', async () => {
+  for (const [path, alt] of [
+    ['', 'Torta arcobaleno con confetti colorati'],
+    ['prodotti/', 'Croissant farcito su un piattino'],
+    ['torte/', 'Torta a forma di abito verde con personaggio'],
+    ['catering/', 'Tavolo catering con bicchieri e personale'],
+    ['natale/', 'Panettone su una confezione natalizia davanti a un albero'],
+  ]) {
+    const html = await readFile(join('dist', path, 'index.html'), 'utf8');
+    assert.ok(html.includes(`alt="${alt}"`), `${path}: ${alt}`);
+  }
 });

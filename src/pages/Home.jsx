@@ -5,8 +5,8 @@ import SectionTitle from '../components/SectionTitle';
 import Reveal from '../components/Reveal';
 import GoogleReviews from '../components/GoogleReviews';
 import { products } from '../data/products';
-import christmasImage from '../assets/natale/WhatsApp Image 2026-11-15 at 13.27.00 (2).jpeg';
-import cateringImage from '../assets/catering/WhatsApp Image 2026-11-15 at 13.25.42 (10).jpeg';
+import christmasImage from '../assets/natale/006-panettone-su-una-confezione-natalizia-davanti-a-un-albero.jpeg';
+import cateringImage from '../assets/catering/004-tavolo-catering-con-bicchieri-e-personale.jpeg';
 import '../styles/home.css';
 
 const cakePhotos = products.filter((product) => product.category === 'torte').slice(0, 6);
@@ -54,7 +54,7 @@ export default function Home() {
       <section className="section home-catering">
         <div className="container home-catering__inner">
           <Reveal className="home-catering__media">
-            <img src={cateringImage} alt="Buffet e servizio catering di Tortatelier per un evento" loading="lazy" decoding="async" width="1024" height="1024" />
+            <img src={cateringImage} alt="Tavolo catering con bicchieri e personale" loading="lazy" decoding="async" width="1024" height="1024" />
           </Reveal>
           <Reveal className="home-catering__text" delay={120}>
             <SectionTitle align="left" eyebrow="I vostri eventi" title="Catering" />

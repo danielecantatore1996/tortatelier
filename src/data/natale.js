@@ -1,3 +1,5 @@
+import { photoAlt } from './photoAlt';
+
 const images = import.meta.glob('../assets/natale/*.{jpeg,jpg,webp}', {
   eager: true,
   query: '?url',
@@ -9,5 +11,5 @@ export const christmasPhotos = Object.entries(images)
   .map(([path, image], index) => ({
     id: path,
     image,
-    alt: `Creazione natalizia di Tortatelier, foto ${index + 1}`,
+    alt: photoAlt(path, `Creazione natalizia di Tortatelier, foto ${index + 1}`),
   }));
