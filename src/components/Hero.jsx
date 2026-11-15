@@ -17,7 +17,7 @@ export default function Hero() {
         </span>
         <h1 id="hero-title">L' arte di creare momenti indimenticabili.</h1>
         <p>{siteInfo.description}</p>
-        <Link to="/prodotti" className="btn btn--gold">
+        <Link to="/prodotti" className="btn btn--dark">
           Scopri i nostri prodotti
         </Link>
       </div>

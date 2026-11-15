@@ -2,39 +2,23 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Snowflake } from 'lucide-react';
 import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
-import ProductCard from '../components/ProductCard';
+import ProductCarousel from '../components/ProductCarousel';
 import Reveal from '../components/Reveal';
 import GoogleReviews from '../components/GoogleReviews';
-import { featuredProducts, products } from '../data/products';
-import { christmasPhotos } from '../data/natale';
-import { img } from '../data/siteInfo';
+import { products } from '../data/products';
+import christmasImage from '../assets/natale/WhatsApp Image 2026-11-15 at 13.27.00 (2).jpeg';
+import cateringImage from '../assets/catering/WhatsApp Image 2026-11-15 at 13.25.42 (10).jpeg';
 import '../styles/home.css';
 
 const cakePhotos = products.filter((product) => product.category === 'torte').slice(0, 6);
+const catalogPhotos = products.filter((product) => product.category !== 'torte');
 
 export default function Home() {
   return (
     <>
       <Hero />
 
-      <section className="section">
-        <div className="container">
-          <Reveal>
-            <SectionTitle eyebrow="Le nostre proposte" title="Prodotti in evidenza" text="Una selezione delle nostre specialità: scopri il catalogo completo per trovare il dolce giusto." />
-          </Reveal>
-          <div className="grid grid--4">
-            {featuredProducts.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80}>
-                <Link className="product-card__link" to={p.category === 'torte' ? '/torte' : `/prodotti?categoria=${p.category}`} aria-label={`Scopri ${p.name}`}><ProductCard product={p} /></Link>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="center mt">
-            <Link to="/prodotti" className="btn btn--outline">Vedi tutti i prodotti <ArrowRight size={16} aria-hidden="true" /></Link>
-          </Reveal>
-        </div>
-      </section>
-
+      <div className="home-content">
       <section className="section home-christmas">
         <div className="container home-christmas__inner">
           <Reveal className="home-christmas__text">
@@ -43,11 +27,9 @@ export default function Home() {
             <p>Scopri le nostre specialità artigianali per le feste, disponibili in negozio e su ordinazione, e sfoglia il catalogo di Natale.</p>
             <Link to="/natale" className="btn home-christmas__button">Scopri il Natale <ArrowRight size={16} aria-hidden="true" /></Link>
           </Reveal>
-          {christmasPhotos[0] && (
-            <Reveal className="home-christmas__media" delay={120}>
-              <img src={christmasPhotos[0].image} alt={christmasPhotos[0].alt} loading="lazy" decoding="async" />
-            </Reveal>
-          )}
+          <Reveal className="home-christmas__media" delay={120}>
+            <img src={christmasImage} alt="Panettone su una confezione natalizia davanti all'albero di Natale" loading="lazy" decoding="async" width="1024" height="1024" />
+          </Reveal>
         </div>
       </section>
 
@@ -66,26 +48,36 @@ export default function Home() {
             ))}
           </div>
           <Reveal className="center mt">
-            <Link to="/torte" className="btn btn--outline">Scopri le nostre torte <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link to="/torte" className="btn btn--dark">Scopri le nostre torte <ArrowRight size={16} aria-hidden="true" /></Link>
           </Reveal>
         </div>
       </section>
 
-      <section className="section home-story">
-        <div className="container split split--reverse">
-          <Reveal className="split__media split__media--tall">
-            <img src={img('site/luca-e-carlo.jpg')} alt="Luca Gambelli e Carlo De Marco, i pasticceri di Tortatelier" loading="lazy" width="768" height="1024" />
+      <section className="section">
+        <div className="container">
+          <SectionTitle eyebrow="Le nostre proposte" title="I nostri prodotti" text="Un assaggio delle nostre specialità artigianali, dalla colazione alla pasticceria." />
+          <ProductCarousel photos={catalogPhotos} />
+          <div className="center mt">
+            <Link to="/prodotti" className="btn btn--dark">Scopri tutti i prodotti <ArrowRight size={16} aria-hidden="true" /></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section home-catering">
+        <div className="container home-catering__inner">
+          <Reveal className="home-catering__media">
+            <img src={cateringImage} alt="Buffet e servizio catering di Tortatelier per un evento" loading="lazy" decoding="async" width="1024" height="1024" />
           </Reveal>
-          <Reveal className="split__text" delay={120}>
-            <SectionTitle align="left" eyebrow="La nostra storia" title="Passione, tradizione e golosità" />
-            <p className="lead">Tortatelier è la pasticceria artigianale di Luca Gambelli e Carlo De Marco, a Milano.</p>
-            <p>Ogni creazione racconta il loro modo di fare pasticceria: cura dei dettagli, ricerca dell&rsquo;equilibrio e voglia di condividere qualcosa di buono.</p>
-            <Link to="/chi-siamo" className="btn btn--outline">Scopri chi siamo <ArrowRight size={16} aria-hidden="true" /></Link>
+          <Reveal className="home-catering__text" delay={120}>
+            <SectionTitle align="left" eyebrow="I vostri eventi" title="Catering" />
+            <p>Per i vostri eventi organizziamo catering con proposte artigianali dolci e salate, bevande e servizio di camerieri.</p>
+            <Link to="/catering" className="btn btn--dark">Scopri il catering <ArrowRight size={16} aria-hidden="true" /></Link>
           </Reveal>
         </div>
       </section>
 
       <GoogleReviews />
+      </div>
     </>
   );
 }

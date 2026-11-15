@@ -60,10 +60,8 @@ main:focus { outline: none; }
 }
 .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
-.btn--gold { background: var(--gold); color: #fff; }
-.btn--gold:hover { background: var(--choc); }
-.btn--outline { border-color: var(--choc); color: var(--choc); background: transparent; }
-.btn--outline:hover { background: var(--choc); color: var(--ivory); }
+.btn--dark { background: var(--choc); color: var(--ivory); }
+.btn--dark:hover { background: var(--choc-soft); }
 .btn--ghost { border-color: rgba(255,255,255,.7); color: #fff; }
 .btn--ghost:hover { background: #fff; color: var(--choc); }
 .btn--whatsapp { background: #1f7a4d; color: #fff; }

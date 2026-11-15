@@ -33,7 +33,7 @@ export const siteInfo = {
   whatsappMessage: "Buongiorno, vorrei avere informazioni sui vostri prodotti.",
 
   instagram: "https://www.instagram.com/tortatelier/?hl=it",
-  googleReviewsUrl: "https://maps.app.goo.gl/rgt3SL7oxZ5RS1Y47",
+  googleReviewsUrl: "https://www.google.com/maps/place/Tortatelier/@45.4829226,9.1832533,17z/data=!4m8!3m7!1s0x4786c1315b282185:0x74134d8bc0be2000!8m2!3d45.4829226!4d9.1832533!9m1!1b1!16s%2Fg%2F12hpgxhfl?hl=it",
 
   // Testo cercato su Google Maps: scrivi l'indirizzo reale della pasticceria
   mapsQuery: "Via Pietro Maroncelli 9, 20154 Milano",

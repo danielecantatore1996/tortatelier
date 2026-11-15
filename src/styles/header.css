@@ -26,10 +26,10 @@
 .nav__link--christmas::after { background: #8e252b; }
 .nav__christmas-icon { color: #28523b; vertical-align: -0.18em; margin-right: 0.35rem; }
 
-.header__toggle { display: none; background: none; border: 0; color: var(--choc); cursor: pointer; padding: 0.4rem; }
+.header__toggle { display: none; width: 44px; height: 44px; padding: 0; background: var(--choc); border: 0; border-radius: 50%; color: var(--ivory); cursor: pointer; }
 
 @media (max-width: 1020px) {
-  .header__toggle { display: block; }
+  .header__toggle { display: grid; place-items: center; }
   .nav {
     position: fixed; inset: var(--header-h) 0 0 0; overflow-y: auto; background: var(--ivory); padding: 2rem 1.5rem;
     transform: translateX(100%); visibility: hidden; transition: transform 0.4s var(--ease), visibility 0.4s;

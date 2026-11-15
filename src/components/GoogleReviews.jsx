@@ -43,11 +43,13 @@ export default function GoogleReviews() {
         />
         <p className="center reviews-link">
           <a
+            className="btn btn--dark"
             href={siteInfo.googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Leggi tutte le recensioni (si apre in una nuova scheda)"
           >
-            Leggi le recensioni su Google Maps (si apre in una nuova scheda)
+            Leggi tutte le recensioni
           </a>
         </p>
       </div>

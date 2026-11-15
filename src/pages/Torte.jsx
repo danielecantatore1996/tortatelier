@@ -13,7 +13,7 @@ export default function Torte() {
       <section className="section">
         <div className="container">
           <div className="center gallery-actions">
-            <Link to="/contatti" className="btn btn--outline">Contattaci per la tua torta <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link to="/contatti" className="btn btn--dark">Contattaci per la tua torta <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <ProductGallery photos={cakes} />
           {cakes.length === 0 && <p className="center">Nessuna foto disponibile.</p>}

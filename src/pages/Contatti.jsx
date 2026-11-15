@@ -179,7 +179,7 @@ export default function Contatti() {
             <div className="contact__actions">
               <WhatsAppButton />
               <a
-                className="btn btn--outline"
+                className="btn btn--dark"
                 href={siteInfo.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -228,7 +228,7 @@ export default function Contatti() {
               </label>
             </div>
             {err("privacy")}
-            <button type="submit" className="btn btn--gold">
+            <button type="submit" className="btn btn--dark">
               Apri email
             </button>
             <p

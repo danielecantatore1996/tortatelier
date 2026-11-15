@@ -153,7 +153,7 @@ export default function ChiSiamo() {
             ))}
           </div>
           <Reveal className="center mt">
-            <Link to="/prodotti" className="btn btn--gold">
+            <Link to="/prodotti" className="btn btn--dark">
               Scopri i nostri prodotti
             </Link>
           </Reveal>

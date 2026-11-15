@@ -11,7 +11,7 @@ export default function Catering() {
       <section className="section">
         <div className="container">
           <div className="center gallery-actions">
-            <Link to="/contatti" className="btn btn--outline">Parlaci del tuo evento <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link to="/contatti" className="btn btn--dark">Parlaci del tuo evento <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <ProductGallery photos={cateringPhotos} />
           {cateringPhotos.length === 0 && <p className="center">Nessuna foto disponibile.</p>}
