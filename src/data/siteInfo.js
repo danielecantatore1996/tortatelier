@@ -16,12 +16,12 @@ export const siteInfo = {
   url: 'https://www.tortatelier.it/',
 
   address: {
-    street: 'Via P. Maroncelli, 9',
-    city: 'Milano',
+    street: 'Via Pietro Maroncelli, 9',
+    city: '20154 Milano',
   },
   phone: '+39 02 62 08 76 69',
   phoneLink: '+390262087669', // solo cifre, con prefisso internazionale
-  email: '',
+  email: 'info@tortatelier.it',
   // Inserire solo dopo aver verificato il numero WhatsApp Business.
   whatsappNumber: '',
   whatsappMessage: 'Buongiorno, vorrei avere informazioni sui vostri prodotti.',
@@ -30,17 +30,12 @@ export const siteInfo = {
   facebook: 'https://www.facebook.com/',
 
   // Testo cercato su Google Maps: scrivi l'indirizzo reale della pasticceria
-  mapsQuery: 'Via P. Maroncelli 9, Milano',
-
-  // Servizio per ricevere i messaggi del modulo contatti (es. Formspree, Web3Forms, Getform).
-  // Lascia vuoto finché non lo configuri: il modulo valida i campi ma non invia nulla.
-  formEndpoint: '',
+  mapsQuery: 'Via Pietro Maroncelli 9, 20154 Milano',
 
   hours: [
-    { day: 'Lunedì', time: 'DA INSERIRE' },
-    { day: 'Martedì - Venerdì', time: 'DA INSERIRE' },
-    { day: 'Sabato', time: 'DA INSERIRE' },
-    { day: 'Domenica', time: 'DA INSERIRE' },
+    { day: 'Lunedì - Venerdì', time: '7:30 - 18:30' },
+    { day: 'Sabato', time: '8:00 - 13:00' },
+    { day: 'Domenica', time: 'Chiuso' },
   ],
 };
 

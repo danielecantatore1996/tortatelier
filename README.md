@@ -13,10 +13,12 @@ npm run images     # rigenera le immagini segnaposto
 ```
 
 ## Dove modificare
-- Nome, indirizzo, telefono, email, WhatsApp, Instagram, orari, mappa, endpoint modulo, SEO: `src/data/siteInfo.js`
+- Nome, indirizzo, telefono, email, WhatsApp, Instagram, orari, mappa e SEO: `src/data/siteInfo.js`
 - Logo: `public/images/logo-tortatelier.png` (per sostituirlo aggiorna anche `logoImage` in `src/data/siteInfo.js`)
 - Prodotti: `src/data/products.js` – foto in `public/images/products/`
 - Galleria: `src/data/gallery.js` – foto in `public/images/gallery/`
 - Foto reali ricevute: `public/images/site/` (Luca e Carlo, interni, torta); foto di esempio aggiuntive: `public/images/products/` e `public/images/gallery/`
 - Colori e font: variabili in `src/styles/global.css`
 - Testi delle pagine: `src/pages/`
+
+Il modulo contatti apre il programma email del visitatore con una bozza indirizzata all'email configurata in `src/data/siteInfo.js`. Il visitatore deve inviarla manualmente; se non ha un programma email configurato può scrivere direttamente all'indirizzo indicato.

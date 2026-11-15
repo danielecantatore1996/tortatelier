@@ -4,6 +4,8 @@
 .page-hero h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); margin-bottom: 0.2em; }
 .page-hero p { max-width: 620px; margin: 0 auto; color: var(--choc-soft); font-size: 1.15rem; }
 .page-hero .container > * { animation: fadeIn 0.8s var(--ease) both; }
+.section.section--values { padding-top: clamp(2rem, 5vw, 4rem); }
+.story-quote { margin: 1.5rem 0 0; padding-left: 1.2rem; border-left: 2px solid var(--rose); font: italic 600 1.35rem/1.4 var(--font-serif); color: var(--choc); }
 
 /* Schede prodotto */
 .product-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 14px rgba(59, 36, 24, 0.06); transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); height: 100%; }

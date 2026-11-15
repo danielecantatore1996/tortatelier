@@ -1,60 +1,71 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Instagram } from 'lucide-react';
-import PageHero from '../components/PageHero';
-import WhatsAppButton from '../components/WhatsAppButton';
-import { siteInfo } from '../data/siteInfo';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { MapPin, Phone, Mail, Clock, Instagram } from "lucide-react";
+import PageHero from "../components/PageHero";
+import WhatsAppButton from "../components/WhatsAppButton";
+import { siteInfo } from "../data/siteInfo";
 
-const initial = { nome: '', email: '', telefono: '', messaggio: '', privacy: false, website: '' };
+const initial = {
+  nome: "",
+  email: "",
+  telefono: "",
+  messaggio: "",
+  privacy: false,
+};
 
 function validate(v) {
   const e = {};
-  if (v.nome.trim().length < 2) e.nome = 'Inserisci il tuo nome.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim())) e.email = 'Inserisci un indirizzo email valido.';
-  if (v.telefono && !/^[+\d][\d\s().-]{5,}$/.test(v.telefono.trim())) e.telefono = 'Inserisci un numero di telefono valido.';
-  if (v.messaggio.trim().length < 10) e.messaggio = 'Scrivi un messaggio di almeno 10 caratteri.';
-  if (!v.privacy) e.privacy = 'Devi accettare l\u2019informativa sulla privacy.';
+  if (v.nome.trim().length < 2) e.nome = "Inserisci il tuo nome.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim()))
+    e.email = "Inserisci un indirizzo email valido.";
+  if (v.telefono && !/^[+\d][\d\s().-]{5,}$/.test(v.telefono.trim()))
+    e.telefono = "Inserisci un numero di telefono valido.";
+  if (v.messaggio.trim().length < 10)
+    e.messaggio = "Scrivi un messaggio di almeno 10 caratteri.";
+  if (!v.privacy)
+    e.privacy = "Devi accettare l\u2019informativa sulla privacy.";
   return e;
 }
 
 export default function Contatti() {
   const [values, setValues] = useState(initial);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState({ type: 'idle', text: '' });
+  const [status, setStatus] = useState({ type: "idle", text: "" });
 
   const onChange = (ev) => {
     const { name, value, type, checked } = ev.target;
-    setValues((v) => ({ ...v, [name]: type === 'checkbox' ? checked : value }));
+    setValues((v) => ({ ...v, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const onSubmit = async (ev) => {
+  const onSubmit = (ev) => {
     ev.preventDefault();
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length) {
-      setStatus({ type: 'error', text: 'Controlla i campi evidenziati.' });
+      setStatus({ type: "error", text: "Controlla i campi evidenziati." });
       document.querySelector('[aria-invalid="true"]')?.focus();
       return;
     }
-    if (values.website) return; // campo trappola anti-spam
-    if (!siteInfo.formEndpoint) {
-      setStatus({ type: 'error', text: 'Il modulo non è ancora collegato a un servizio di invio. Nel frattempo scrivici su WhatsApp o via email.' });
+    if (!siteInfo.email) {
+      setStatus({
+        type: "error",
+        text: "L'indirizzo email della pasticceria non è ancora configurato.",
+      });
       return;
     }
-    setStatus({ type: 'loading', text: 'Invio in corso…' });
-    try {
-      const { nome, email, telefono, messaggio } = values;
-      const res = await fetch(siteInfo.formEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ nome, email, telefono, messaggio }),
-      });
-      if (!res.ok) throw new Error('Errore di invio');
-      setValues(initial);
-      setStatus({ type: 'success', text: 'Grazie! Il tuo messaggio è stato inviato.' });
-    } catch {
-      setStatus({ type: 'error', text: 'Invio non riuscito. Riprova o contattaci direttamente.' });
-    }
+    const body = [
+      `Nome: ${values.nome.trim()}`,
+      `Email: ${values.email.trim()}`,
+      ...(values.telefono.trim() ? [`Telefono: ${values.telefono.trim()}`] : []),
+      "",
+      values.messaggio.trim(),
+    ].join("\r\n");
+    const subject = encodeURIComponent("Richiesta di informazioni");
+    setStatus({
+      type: "info",
+      text: `Completa l'invio nel tuo programma email. Se non si apre, scrivici direttamente a ${siteInfo.email}.`,
+    });
+    window.location.href = `mailto:${siteInfo.email}?subject=${subject}&body=${encodeURIComponent(body)}`;
   };
 
   const field = (name) => ({
@@ -62,44 +73,140 @@ export default function Contatti() {
     name,
     value: values[name],
     onChange,
-    'aria-invalid': errors[name] ? 'true' : undefined,
-    'aria-describedby': errors[name] ? `${name}-err` : undefined,
+    "aria-invalid": errors[name] ? "true" : undefined,
+    "aria-describedby": errors[name] ? `${name}-err` : undefined,
   });
-  const err = (name) => errors[name] && <span className="field__error" id={`${name}-err`} role="alert">{errors[name]}</span>;
+  const err = (name) =>
+    errors[name] && (
+      <span className="field__error" id={`${name}-err`} role="alert">
+        {errors[name]}
+      </span>
+    );
 
   return (
     <>
-      <PageHero eyebrow="Contatti" title="Vieni a trovarci" text="Per informazioni, ordini o preventivi su torte personalizzate: siamo a tua disposizione." />
+      <PageHero
+        eyebrow="Contatti"
+        title="Vieni a trovarci"
+        text="Per informazioni, ordini o preventivi su torte personalizzate puoi contattarci via email, tramite il modulo o con un messaggio sulla nostra pagina Instagram."
+      />
       <section className="section">
         <div className="container contact">
           <div className="contact__info">
             <ul className="contact__list">
-              <li><MapPin aria-hidden="true" /><div><h3>Indirizzo</h3><p>{siteInfo.address.street}<br />{siteInfo.address.city}</p></div></li>
-              <li><Phone aria-hidden="true" /><div><h3>Telefono</h3><p><a href={`tel:${siteInfo.phoneLink}`}>{siteInfo.phone}</a></p></div></li>
-              <li><Mail aria-hidden="true" /><div><h3>Email</h3><p>{siteInfo.email ? <a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a> : 'Email da inserire'}</p></div></li>
-              <li><Clock aria-hidden="true" /><div><h3>Orari di apertura</h3>
-                <dl className="hours">{siteInfo.hours.map((h) => (<div key={h.day}><dt>{h.day}</dt><dd>{h.time}</dd></div>))}</dl></div></li>
+              <li>
+                <MapPin aria-hidden="true" />
+                <div>
+                  <h3>Indirizzo</h3>
+                  <p>
+                    {siteInfo.address.street}
+                    <br />
+                    {siteInfo.address.city}
+                  </p>
+                </div>
+              </li>
+              <li>
+                <Phone aria-hidden="true" />
+                <div>
+                  <h3>Telefono</h3>
+                  <p>
+                    <a href={`tel:${siteInfo.phoneLink}`}>{siteInfo.phone}</a>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <Mail aria-hidden="true" />
+                <div>
+                  <h3>Email</h3>
+                  <p>
+                    {siteInfo.email ? (
+                      <a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a>
+                    ) : (
+                      "Email da inserire"
+                    )}
+                  </p>
+                </div>
+              </li>
+              <li>
+                <Clock aria-hidden="true" />
+                <div>
+                  <h3>Orari di apertura</h3>
+                  <dl className="hours">
+                    {siteInfo.hours.map((h) => (
+                      <div key={h.day}>
+                        <dt>{h.day}</dt>
+                        <dd>{h.time}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </li>
             </ul>
             <div className="contact__actions">
               <WhatsAppButton />
-              <a className="btn btn--outline" href={siteInfo.instagram} target="_blank" rel="noopener noreferrer"><Instagram size={18} aria-hidden="true" /> Seguici su Instagram</a>
+              <a
+                className="btn btn--outline"
+                href={siteInfo.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Instagram size={18} aria-hidden="true" /> Seguici su Instagram
+              </a>
             </div>
           </div>
 
           <form className="form" onSubmit={onSubmit} noValidate>
             <h2>Richiedi informazioni</h2>
-            <div className="field"><label htmlFor="nome">Nome e cognome *</label><input type="text" autoComplete="name" {...field('nome')} />{err('nome')}</div>
-            <div className="field"><label htmlFor="email">Email *</label><input type="email" autoComplete="email" {...field('email')} />{err('email')}</div>
-            <div className="field"><label htmlFor="telefono">Telefono (facoltativo)</label><input type="tel" autoComplete="tel" {...field('telefono')} />{err('telefono')}</div>
-            <div className="field"><label htmlFor="messaggio">Messaggio *</label><textarea rows="5" {...field('messaggio')} />{err('messaggio')}</div>
-            <div className="field field--hp" aria-hidden="true"><label htmlFor="website">Non compilare</label><input type="text" tabIndex={-1} autoComplete="off" id="website" name="website" value={values.website} onChange={onChange} /></div>
-            <div className="field field--check">
-              <input type="checkbox" id="privacy" name="privacy" checked={values.privacy} onChange={onChange} aria-invalid={errors.privacy ? 'true' : undefined} aria-describedby={errors.privacy ? 'privacy-err' : undefined} />
-              <label htmlFor="privacy">Ho letto la <Link to="/privacy">Privacy Policy</Link> e acconsento al trattamento dei dati. *</label>
+            <p>Il modulo apre il tuo programma email con il messaggio già compilato. Per inviarlo dovrai confermare l'invio.</p>
+            <div className="field">
+              <label htmlFor="nome">Nome e cognome *</label>
+              <input type="text" autoComplete="name" {...field("nome")} />
+              {err("nome")}
             </div>
-            {err('privacy')}
-            <button type="submit" className="btn btn--gold" disabled={status.type === 'loading'}>Invia richiesta</button>
-            <p className={`form__status form__status--${status.type}`} role="status" aria-live="polite">{status.text}</p>
+            <div className="field">
+              <label htmlFor="email">Email *</label>
+              <input type="email" autoComplete="email" {...field("email")} />
+              {err("email")}
+            </div>
+            <div className="field">
+              <label htmlFor="telefono">Telefono (facoltativo)</label>
+              <input type="tel" autoComplete="tel" {...field("telefono")} />
+              {err("telefono")}
+            </div>
+            <div className="field">
+              <label htmlFor="messaggio">Messaggio *</label>
+              <textarea rows="5" {...field("messaggio")} />
+              {err("messaggio")}
+            </div>
+            <div className="field field--check">
+              <input
+                type="checkbox"
+                id="privacy"
+                name="privacy"
+                checked={values.privacy}
+                onChange={onChange}
+                aria-invalid={errors.privacy ? "true" : undefined}
+                aria-describedby={errors.privacy ? "privacy-err" : undefined}
+              />
+              <label htmlFor="privacy">
+                Ho letto la <Link to="/privacy">Privacy Policy</Link> e
+                acconsento al trattamento dei dati. *
+              </label>
+            </div>
+            {err("privacy")}
+            <button
+              type="submit"
+              className="btn btn--gold"
+            >
+              Apri email
+            </button>
+            <p
+              className={`form__status form__status--${status.type}`}
+              role="status"
+              aria-live="polite"
+            >
+              {status.text}
+            </p>
           </form>
         </div>
       </section>

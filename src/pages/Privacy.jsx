@@ -11,7 +11,7 @@ export default function Privacy() {
           <h2>Titolare del trattamento</h2>
           <p>{siteInfo.name} — {siteInfo.address.street}, {siteInfo.address.city} — {siteInfo.email || 'email da inserire'}</p>
           <h2>Dati raccolti</h2>
-          <p>Attraverso il modulo contatti raccogliamo nome, email, telefono (facoltativo) e il contenuto del messaggio, al solo scopo di rispondere alla tua richiesta.</p>
+          <p>Il modulo prepara un&rsquo;email con nome, indirizzo email, telefono (facoltativo) e messaggio nel programma di posta del visitatore. Il sito non invia né salva questi dati: la richiesta viene ricevuta solo se il visitatore invia l&rsquo;email dal proprio programma di posta.</p>
           <h2>Base giuridica e conservazione</h2>
           <p>Il trattamento si basa sul tuo consenso e sull&rsquo;esecuzione di richieste precontrattuali. I dati sono conservati per il tempo necessario a gestire la richiesta.</p>
           <h2>I tuoi diritti</h2>
