@@ -14,6 +14,7 @@
 .footer__bottom { border-top: 1px solid rgba(233, 220, 199, 0.15); font-size: 0.88rem; }
 .footer__bottom-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 2rem; padding: 1.4rem 0; }
 .footer__bottom p { margin: 0; }
+.footer__company { flex-basis: 100%; }
 .footer__legal { display: flex; gap: 1.5rem; }
 
 @media (max-width: 960px) { .footer__grid { grid-template-columns: 1fr 1fr; } }

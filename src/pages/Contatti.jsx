@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Clock, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Instagram, Truck } from "lucide-react";
 import PageHero from "../components/PageHero";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { siteInfo } from "../data/siteInfo";
@@ -56,7 +56,9 @@ export default function Contatti() {
     const body = [
       `Nome: ${values.nome.trim()}`,
       `Email: ${values.email.trim()}`,
-      ...(values.telefono.trim() ? [`Telefono: ${values.telefono.trim()}`] : []),
+      ...(values.telefono.trim()
+        ? [`Telefono: ${values.telefono.trim()}`]
+        : []),
       "",
       values.messaggio.trim(),
     ].join("\r\n");
@@ -88,7 +90,24 @@ export default function Contatti() {
       <PageHero
         eyebrow="Contatti"
         title="Vieni a trovarci"
-        text="Per informazioni, ordini o preventivi su torte personalizzate puoi contattarci via email, tramite il modulo o con un messaggio sulla nostra pagina Instagram."
+        text={
+          <>
+            Per informazioni, ordini o preventivi su torte personalizzate puoi
+            contattarci <strong>via email</strong>,{" "}
+            <strong>tramite il modulo qui sotto</strong> o con un{" "}
+            <strong>
+              messaggio sulla nostra pagina{" "}
+              <a
+                href={siteInfo.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram
+              </a>
+            </strong>
+            .
+          </>
+        }
       />
       <section className="section">
         <div className="container contact">
@@ -142,6 +161,21 @@ export default function Contatti() {
                 </div>
               </li>
             </ul>
+            <section className="delivery-info" aria-labelledby="delivery-info-title">
+              <h2 id="delivery-info-title">
+                <Truck size={22} aria-hidden="true" /> Informazioni sulle consegne
+              </h2>
+              <dl className="delivery-info__list">
+                <div>
+                  <dt>Consegna a domicilio</dt>
+                  <dd>{siteInfo.delivery.home}</dd>
+                </div>
+                <div>
+                  <dt>Consegna fuori Milano</dt>
+                  <dd>{siteInfo.delivery.outsideMilan}</dd>
+                </div>
+              </dl>
+            </section>
             <div className="contact__actions">
               <WhatsAppButton />
               <a
@@ -157,7 +191,7 @@ export default function Contatti() {
 
           <form className="form" onSubmit={onSubmit} noValidate>
             <h2>Richiedi informazioni</h2>
-            <p>Il modulo apre il tuo programma email con il messaggio già compilato. Per inviarlo dovrai confermare l'invio.</p>
+            <p>Compila il modulo e inviaci uan richiesta via email</p>
             <div className="field">
               <label htmlFor="nome">Nome e cognome *</label>
               <input type="text" autoComplete="name" {...field("nome")} />
@@ -194,10 +228,7 @@ export default function Contatti() {
               </label>
             </div>
             {err("privacy")}
-            <button
-              type="submit"
-              className="btn btn--gold"
-            >
+            <button type="submit" className="btn btn--gold">
               Apri email
             </button>
             <p

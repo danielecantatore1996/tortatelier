@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -7,7 +7,9 @@ import Seo from './components/Seo';
 import Home from './pages/Home';
 import ChiSiamo from './pages/ChiSiamo';
 import Prodotti from './pages/Prodotti';
-import Creazioni from './pages/Creazioni';
+import Torte from './pages/Torte';
+import Catering from './pages/Catering';
+import Natale from './pages/Natale';
 import Contatti from './pages/Contatti';
 import Privacy from './pages/Privacy';
 import CookiePolicy from './pages/CookiePolicy';
@@ -25,7 +27,10 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/chi-siamo" element={<ChiSiamo />} />
           <Route path="/prodotti" element={<Prodotti />} />
-          <Route path="/creazioni" element={<Creazioni />} />
+          <Route path="/torte" element={<Torte />} />
+          <Route path="/catering" element={<Catering />} />
+          <Route path="/natale" element={<Natale />} />
+          <Route path="/creazioni" element={<Navigate to="/torte" replace />} />
           <Route path="/contatti" element={<Contatti />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />

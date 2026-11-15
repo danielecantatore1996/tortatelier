@@ -8,6 +8,7 @@
 
 .logo { display: inline-flex; align-items: center; gap: 0.75rem; text-decoration: none; }
 .logo__image { width: auto; height: 68px; object-fit: contain; }
+.logo__wordmark { color: #b44943; font: 300 1.7rem/1 var(--font-sans); letter-spacing: 0.12em; text-transform: lowercase; white-space: nowrap; }
 .logo__mark { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--choc); color: var(--gold-light); font: 600 1.6rem/1 var(--font-serif); }
 .logo__text { display: flex; flex-direction: column; line-height: 1.05; }
 .logo__name { font: 600 1.6rem/1 var(--font-serif); letter-spacing: 0.04em; }
@@ -21,17 +22,22 @@
 .nav__link::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.35s var(--ease); }
 .nav__link:hover::after, .nav__link.is-active::after { transform: scaleX(1); }
 .nav__link.is-active { color: var(--gold); }
+.nav__link--christmas, .nav__link--christmas.is-active { color: #8e252b; font-weight: 700; }
+.nav__link--christmas::after { background: #8e252b; }
+.nav__christmas-icon { color: #28523b; vertical-align: -0.18em; margin-right: 0.35rem; }
 
 .header__toggle { display: none; background: none; border: 0; color: var(--choc); cursor: pointer; padding: 0.4rem; }
 
-@media (max-width: 920px) {
+@media (max-width: 1020px) {
   .header__toggle { display: block; }
   .nav {
-    position: fixed; inset: var(--header-h) 0 0 0; background: var(--ivory); padding: 2rem 1.5rem;
+    position: fixed; inset: var(--header-h) 0 0 0; overflow-y: auto; background: var(--ivory); padding: 2rem 1.5rem;
     transform: translateX(100%); visibility: hidden; transition: transform 0.4s var(--ease), visibility 0.4s;
   }
   .header--open .nav { transform: none; visibility: visible; }
   .nav ul { flex-direction: column; gap: 0.4rem; }
   .nav__link { display: block; font: 500 1.9rem/1.3 var(--font-serif); text-transform: none; letter-spacing: 0; padding: 0.6rem 0; border-bottom: 1px solid var(--beige); }
+  .nav__link--christmas { font-weight: 700; }
+  .nav__christmas-icon { width: 1.3rem; height: 1.3rem; }
   .nav__link::after { display: none; }
 }

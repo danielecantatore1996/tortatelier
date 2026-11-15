@@ -1,0 +1,30 @@
+.christmas__hero { position: relative; }
+.christmas__hero .page-hero { background: linear-gradient(135deg, #123b30, #28523b); color: #fffaf0; }
+.christmas__hero .page-hero::after { background: #d3aa5b; opacity: 1; }
+.christmas__hero .eyebrow { color: #f0d496; }
+.christmas__hero .page-hero p { color: #f7ede0; }
+.christmas__hero .ornament { color: #e5c27b; }
+.christmas__decor { position: absolute; inset: 0; overflow: hidden; color: #e5c27b; pointer-events: none; }
+.christmas__decor svg { position: absolute; opacity: 0.3; stroke-width: 1; }
+.christmas__snowflake { width: clamp(70px, 10vw, 150px); height: auto; top: 16%; left: 7%; }
+.christmas__tree { width: clamp(90px, 12vw, 170px); height: auto; bottom: 8%; right: 7%; }
+.christmas__sparkles { width: 48px; height: auto; top: 15%; right: 22%; }
+.christmas__gallery { background: #faf2e5; border-top: 8px solid #8e252b; }
+.christmas__intro { max-width: 700px; margin: 0 auto 3rem; text-align: center; color: #163d30; }
+.christmas__intro > svg { color: #a97931; margin-bottom: 0.6rem; }
+.christmas__intro h2 { margin-bottom: 0.3em; }
+.christmas__intro p { color: #58483c; }
+.christmas__button { margin-top: 0.8rem; background: #8e252b; color: #fff; }
+.christmas__button:hover { background: #163d30; color: #fff; }
+.christmas__catalog { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid #d3aa5b; border-radius: var(--radius); background: #163d30; color: #fffaf0; }
+.christmas__catalog h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.3em; }
+.christmas__catalog p { max-width: 600px; margin: 0; color: #f7ede0; }
+.christmas__catalog-button { flex: none; background: #fffaf0; color: #163d30; }
+.christmas__catalog-button:hover { background: #e5c27b; }
+
+@media (max-width: 600px) {
+  .christmas__decor svg { opacity: 0.15; }
+  .christmas__snowflake { left: -1rem; }
+  .christmas__tree { right: -1rem; }
+  .christmas__catalog { flex-direction: column; align-items: flex-start; }
+}

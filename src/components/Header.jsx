@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, TreePine, X } from 'lucide-react';
 import Logo from './Logo';
 import { navLinks } from '../data/siteInfo';
 import '../styles/header.css';
@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <header className={`header${scrolled ? ' header--scrolled' : ''}${open ? ' header--open' : ''}`}>
       <div className="container header__inner">
-        <Logo />
+        <Logo showName />
         <button
           type="button"
           className="header__toggle"
@@ -49,7 +49,8 @@ export default function Header() {
           <ul>
             {navLinks.map((l) => (
               <li key={l.to}>
-                <NavLink to={l.to} end={l.to === '/'} className={({ isActive }) => `nav__link${isActive ? ' is-active' : ''}`}>
+                <NavLink to={l.to} end={l.to === '/'} className={({ isActive }) => `nav__link${l.to === '/natale' ? ' nav__link--christmas' : ''}${isActive ? ' is-active' : ''}`}>
+                  {l.to === '/natale' && <TreePine className="nav__christmas-icon" size={17} aria-hidden="true" />}
                   {l.label}
                 </NavLink>
               </li>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, MapPin, Phone, Mail } from 'lucide-react';
+import { Instagram, MapPin, Phone, Mail } from 'lucide-react';
 import Logo from './Logo';
 import { siteInfo, navLinks } from '../data/siteInfo';
 import '../styles/footer.css';
@@ -15,9 +15,6 @@ export default function Footer() {
           <div className="footer__social">
             <a href={siteInfo.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram (si apre in una nuova scheda)">
               <Instagram size={20} />
-            </a>
-            <a href={siteInfo.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook (si apre in una nuova scheda)">
-              <Facebook size={20} />
             </a>
           </div>
         </div>
@@ -51,6 +48,7 @@ export default function Footer() {
       </div>
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
+          <p className="footer__company">Dati societari: {siteInfo.legalName} · P.IVA e CF {siteInfo.vatAndFiscalCode}</p>
           <p>© {year} {siteInfo.name}. Tutti i diritti riservati.</p>
           <p className="footer__legal">
             <Link to="/privacy">Privacy Policy</Link>

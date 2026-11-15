@@ -15,7 +15,7 @@ export default function Hero() {
         <span className="eyebrow eyebrow--light">
           {siteInfo.name} · {siteInfo.tagline}
         </span>
-        <h1 id="hero-title">La dolcezza della tradizione, ogni giorno.</h1>
+        <h1 id="hero-title">L' arte di creare momenti indimenticabili.</h1>
         <p>{siteInfo.description}</p>
         <Link to="/prodotti" className="btn btn--gold">
           Scopri i nostri prodotti

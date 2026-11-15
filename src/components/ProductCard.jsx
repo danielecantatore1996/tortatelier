@@ -6,7 +6,7 @@ export default function ProductCard({ product }) {
       </div>
       <div className="product-card__body">
         <h3>{product.name}</h3>
-        <p>{product.description}</p>
+        {product.description && <p>{product.description}</p>}
       </div>
     </article>
   );
