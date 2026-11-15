@@ -16,7 +16,7 @@ export const siteInfo = {
   shareImage: img("site/torta-gialla.png"),
   shareImageAlt: "Torta artigianale di Tortatelier con glassa gialla",
   description:
-    "A Milano, vicino a Porta Garibaldi, prepariamo torte, pasticcini, croissant, coffee break e catering con materie prime selezionate e tanta passione.",
+    "Prepariamo torte, pasticcini, croissant, coffee break e catering con materie prime selezionate e tanta passione.",
   url: "https://www.tortatelier.it/",
 
   address: {
@@ -35,13 +35,18 @@ export const siteInfo = {
   whatsappMessage: "Buongiorno, vorrei avere informazioni sui vostri prodotti.",
 
   instagram: "https://www.instagram.com/tortatelier/?hl=it",
-  googleReviewsUrl: "https://www.google.com/maps/place/Tortatelier/@45.4829226,9.1832533,17z/data=!4m8!3m7!1s0x4786c1315b282185:0x74134d8bc0be2000!8m2!3d45.4829226!4d9.1832533!9m1!1b1!16s%2Fg%2F12hpgxhfl?hl=it",
+  googleReviewsUrl:
+    "https://www.google.com/maps/place/Tortatelier/@45.4829226,9.1832533,17z/data=!4m8!3m7!1s0x4786c1315b282185:0x74134d8bc0be2000!8m2!3d45.4829226!4d9.1832533!9m1!1b1!16s%2Fg%2F12hpgxhfl?hl=it",
 
   // Testo cercato su Google Maps: scrivi l'indirizzo reale della pasticceria
   mapsQuery: "Via Pietro Maroncelli 9, 20154 Milano",
 
   hours: [
-    { day: "Lunedì - Venerdì", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], time: "7:30 - 18:30" },
+    {
+      day: "Lunedì - Venerdì",
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      time: "7:30 - 18:30",
+    },
     { day: "Sabato", days: ["Saturday"], time: "8:00 - 13:00" },
     { day: "Domenica", days: ["Sunday"], time: "Chiuso" },
   ],

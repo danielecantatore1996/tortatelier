@@ -16,7 +16,11 @@ export default function Hero() {
           {siteInfo.name} · {siteInfo.tagline} · Bakery lab
         </span>
         <h1 id="hero-title">L' arte di creare momenti indimenticabili.</h1>
-        <p>{siteInfo.description}</p>
+        <p>
+          {siteInfo.description}
+          <br />
+          Ci troviamo nel cuore di Porta Garibaldi a Milano, vienici a trovare!
+        </p>
         <Link to="/prodotti/" className="btn btn--dark">
           Scopri i nostri prodotti
         </Link>
