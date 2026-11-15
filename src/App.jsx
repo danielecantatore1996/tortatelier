@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -15,10 +15,9 @@ import Privacy from './pages/Privacy';
 import CookiePolicy from './pages/CookiePolicy';
 import NotFound from './pages/NotFound';
 
-// HashRouter: i link funzionano anche su GitHub Pages, anche ricaricando la pagina
 export default function App() {
   return (
-    <HashRouter>
+    <>
       <a href="#contenuto" className="skip-link" onClick={(e) => { e.preventDefault(); document.getElementById('contenuto')?.focus(); }}>Vai al contenuto</a>
       <Seo />
       <Header />
@@ -30,7 +29,7 @@ export default function App() {
           <Route path="/torte" element={<Torte />} />
           <Route path="/catering" element={<Catering />} />
           <Route path="/natale" element={<Natale />} />
-          <Route path="/creazioni" element={<Navigate to="/torte" replace />} />
+          <Route path="/creazioni" element={<Navigate to="/torte/" replace />} />
           <Route path="/contatti" element={<Contatti />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
@@ -40,6 +39,6 @@ export default function App() {
       <Footer />
       <WhatsAppButton floating />
       <ScrollToTop />
-    </HashRouter>
+    </>
   );
 }

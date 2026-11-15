@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Snowflake } from 'lucide-react';
 import Hero from '../components/Hero';
 import SectionTitle from '../components/SectionTitle';
-import ProductCarousel from '../components/ProductCarousel';
 import Reveal from '../components/Reveal';
 import GoogleReviews from '../components/GoogleReviews';
 import { products } from '../data/products';
@@ -11,7 +10,6 @@ import cateringImage from '../assets/catering/WhatsApp Image 2026-11-15 at 13.25
 import '../styles/home.css';
 
 const cakePhotos = products.filter((product) => product.category === 'torte').slice(0, 6);
-const catalogPhotos = products.filter((product) => product.category !== 'torte');
 
 export default function Home() {
   return (
@@ -24,8 +22,8 @@ export default function Home() {
           <Reveal className="home-christmas__text">
             <span className="eyebrow"><Snowflake size={16} aria-hidden="true" /> La magia delle feste</span>
             <h2>Il Natale di Tortatelier</h2>
-            <p>Scopri le nostre specialità artigianali per le feste, disponibili in negozio e su ordinazione, e sfoglia il catalogo di Natale.</p>
-            <Link to="/natale" className="btn home-christmas__button">Scopri il Natale <ArrowRight size={16} aria-hidden="true" /></Link>
+            <p>Le nostre specialità natalizie sono disponibili in negozio e su ordinazione. Sfoglia il catalogo di Natale per scoprire di più.</p>
+            <Link to="/natale/" className="btn home-christmas__button">Scopri il Natale <ArrowRight size={16} aria-hidden="true" /></Link>
           </Reveal>
           <Reveal className="home-christmas__media" delay={120}>
             <img src={christmasImage} alt="Panettone su una confezione natalizia davanti all'albero di Natale" loading="lazy" decoding="async" width="1024" height="1024" />
@@ -41,25 +39,15 @@ export default function Home() {
           <div className="mosaic">
             {cakePhotos.map((g, i) => (
               <Reveal key={g.id} delay={i * 60} className="mosaic__item">
-                <Link to="/torte" aria-label={`${g.alt} - vai alle torte`}>
+                <Link to="/torte/" aria-label={`${g.alt} - vai alle torte`}>
                   <img src={g.image} alt={g.alt} loading="lazy" width="800" height="600" />
                 </Link>
               </Reveal>
             ))}
           </div>
           <Reveal className="center mt">
-            <Link to="/torte" className="btn btn--dark">Scopri le nostre torte <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link to="/torte/" className="btn btn--dark">Scopri le nostre torte <ArrowRight size={16} aria-hidden="true" /></Link>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <SectionTitle eyebrow="Le nostre proposte" title="I nostri prodotti" text="Un assaggio delle nostre specialità artigianali, dalla colazione alla pasticceria." />
-          <ProductCarousel photos={catalogPhotos} />
-          <div className="center mt">
-            <Link to="/prodotti" className="btn btn--dark">Scopri tutti i prodotti <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
         </div>
       </section>
 
@@ -71,7 +59,7 @@ export default function Home() {
           <Reveal className="home-catering__text" delay={120}>
             <SectionTitle align="left" eyebrow="I vostri eventi" title="Catering" />
             <p>Per i vostri eventi organizziamo catering con proposte artigianali dolci e salate, bevande e servizio di camerieri.</p>
-            <Link to="/catering" className="btn btn--dark">Scopri il catering <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link to="/catering/" className="btn btn--dark">Scopri il catering <ArrowRight size={16} aria-hidden="true" /></Link>
           </Reveal>
         </div>
       </section>

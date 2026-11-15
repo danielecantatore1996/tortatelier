@@ -13,11 +13,11 @@ export default function Prodotti() {
   const list = active === 'tutti' ? catalogProducts : catalogProducts.filter((p) => p.category === active);
   const filters = [{ id: 'tutti', label: 'Tutti' }, ...productCategories];
 
-  if (requestedCategory === 'torte') return <Navigate to="/torte" replace />;
+  if (requestedCategory === 'torte') return <Navigate to="/torte/" replace />;
 
   return (
     <>
-      <PageHero eyebrow="Il nostro catalogo" title="I nostri prodotti" text="Dolci, salati e golosità preparati ogni giorno. Per ordini e informazioni contattaci." />
+      <PageHero eyebrow="Il nostro catalogo" title="I nostri prodotti" text="Croissant per la colazione, pasticcini, biscotti e altre golosità artigianali. Per ordini e informazioni contattaci." />
       <section className="section">
         <div className="container">
           <div className="filters" role="group" aria-label="Filtra i prodotti per categoria">

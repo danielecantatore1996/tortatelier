@@ -13,11 +13,11 @@ export default function Hero() {
       <div className="hero__overlay" />
       <div className="container hero__content">
         <span className="eyebrow eyebrow--light">
-          {siteInfo.name} · {siteInfo.tagline}
+          {siteInfo.name} · {siteInfo.tagline} · Bakery lab
         </span>
         <h1 id="hero-title">L' arte di creare momenti indimenticabili.</h1>
         <p>{siteInfo.description}</p>
-        <Link to="/prodotti" className="btn btn--dark">
+        <Link to="/prodotti/" className="btn btn--dark">
           Scopri i nostri prodotti
         </Link>
       </div>

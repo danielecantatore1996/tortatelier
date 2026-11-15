@@ -223,7 +223,7 @@ export default function Contatti() {
                 aria-describedby={errors.privacy ? "privacy-err" : undefined}
               />
               <label htmlFor="privacy">
-                Ho letto la <Link to="/privacy">Privacy Policy</Link> e
+                Ho letto la <Link to="/privacy/">Privacy Policy</Link> e
                 acconsento al trattamento dei dati. *
               </label>
             </div>

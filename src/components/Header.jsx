@@ -49,8 +49,8 @@ export default function Header() {
           <ul>
             {navLinks.map((l) => (
               <li key={l.to}>
-                <NavLink to={l.to} end={l.to === '/'} className={({ isActive }) => `nav__link${l.to === '/natale' ? ' nav__link--christmas' : ''}${isActive ? ' is-active' : ''}`}>
-                  {l.to === '/natale' && <TreePine className="nav__christmas-icon" size={17} aria-hidden="true" />}
+                <NavLink to={l.to} end={l.to === '/'} className={({ isActive }) => `nav__link${l.to === '/natale/' ? ' nav__link--christmas' : ''}${isActive ? ' is-active' : ''}`}>
+                  {l.to === '/natale/' && <TreePine className="nav__christmas-icon" size={17} aria-hidden="true" />}
                   {l.label}
                 </NavLink>
               </li>

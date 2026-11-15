@@ -51,8 +51,8 @@ export default function Footer() {
           <p className="footer__company">Dati societari: {siteInfo.legalName} · P.IVA e CF {siteInfo.vatAndFiscalCode}</p>
           <p>© {year} {siteInfo.name}. Tutti i diritti riservati.</p>
           <p className="footer__legal">
-            <Link to="/privacy">Privacy Policy</Link>
-            <Link to="/cookie-policy">Cookie Policy</Link>
+            <Link to="/privacy/">Privacy Policy</Link>
+            <Link to="/cookie-policy/">Cookie Policy</Link>
           </p>
         </div>
       </div>

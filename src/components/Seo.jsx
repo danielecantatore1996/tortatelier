@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { seo } from '../data/siteInfo';
+import { getPageMetadata } from '../data/siteInfo';
 
-// Aggiorna titolo e meta description per ogni pagina
 export default function Seo() {
   const { pathname } = useLocation();
   useEffect(() => {
-    const data = seo[pathname] || seo['/'];
+    const data = getPageMetadata(pathname);
+    if (!data) return;
     document.title = data.title;
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
@@ -15,6 +15,22 @@ export default function Seo() {
       document.head.appendChild(meta);
     }
     meta.content = data.description;
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = data.url;
+    for (const [property, content] of Object.entries(data.openGraph)) {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.content = content;
+    }
   }, [pathname]);
   return null;
 }

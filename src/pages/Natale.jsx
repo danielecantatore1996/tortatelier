@@ -22,7 +22,7 @@ export default function Natale() {
             <Sparkles size={24} aria-hidden="true" />
             <h2>Le nostre idee per le feste</h2>
             <p>Scopri le nostre creazioni natalizie e scegli la tua preferita.</p>
-            <Link to="/contatti" className="btn christmas__button">Contattaci per ordinare <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link to="/contatti/" className="btn christmas__button">Contattaci per ordinare <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="christmas__catalog">
             <div>

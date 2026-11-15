@@ -13,8 +13,10 @@ export const siteInfo = {
   vatAndFiscalCode: "12097890961",
   tagline: "Pasticceria artigianale",
   logoImage: img("logo-tortatelier.png"),
+  shareImage: img("site/torta-gialla.png"),
+  shareImageAlt: "Torta artigianale di Tortatelier con glassa gialla",
   description:
-    "Torte, pasticcini, croissant, coffee break e catering con materie prime selezionate e tanta passione.",
+    "A Milano, vicino a Porta Garibaldi, prepariamo torte, pasticcini, croissant, coffee break e catering con materie prime selezionate e tanta passione.",
   url: "https://www.tortatelier.it/",
 
   address: {
@@ -39,27 +41,27 @@ export const siteInfo = {
   mapsQuery: "Via Pietro Maroncelli 9, 20154 Milano",
 
   hours: [
-    { day: "Lunedì - Venerdì", time: "7:30 - 18:30" },
-    { day: "Sabato", time: "8:00 - 13:00" },
-    { day: "Domenica", time: "Chiuso" },
+    { day: "Lunedì - Venerdì", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], time: "7:30 - 18:30" },
+    { day: "Sabato", days: ["Saturday"], time: "8:00 - 13:00" },
+    { day: "Domenica", days: ["Sunday"], time: "Chiuso" },
   ],
 };
 
 export const navLinks = [
   { to: "/", label: "Home" },
-  { to: "/chi-siamo", label: "Chi siamo" },
-  { to: "/prodotti", label: "Prodotti" },
-  { to: "/torte", label: "Torte" },
-  { to: "/catering", label: "Catering" },
-  { to: "/natale", label: "Natale" },
-  { to: "/contatti", label: "Contatti" },
+  { to: "/chi-siamo/", label: "Chi siamo" },
+  { to: "/prodotti/", label: "Prodotti" },
+  { to: "/torte/", label: "Torte" },
+  { to: "/catering/", label: "Catering" },
+  { to: "/natale/", label: "Natale" },
+  { to: "/contatti/", label: "Contatti" },
 ];
 
 export const seo = {
   "/": {
-    title: "Tortatelier | Pasticceria artigianale",
+    title: "Tortatelier | Pasticceria artigianale a Milano",
     description:
-      "Tortatelier: la dolcezza della tradizione, ogni giorno. Torte, pasticcini, brioche, biscotti e cioccolateria artigianali.",
+      "Tortatelier, pasticceria artigianale vicino a Porta Garibaldi: torte, pasticcini, colazione e catering a Milano.",
   },
   "/chi-siamo": {
     title: "Chi siamo | Tortatelier",
@@ -67,19 +69,19 @@ export const seo = {
       "La storia, la filosofia e i valori di Tortatelier: passione, qualità delle materie prime e lavorazione artigianale.",
   },
   "/prodotti": {
-    title: "I nostri prodotti | Tortatelier",
+    title: "Pasticceria e colazione | Tortatelier",
     description:
-      "Scopri le foto della biscotteria, della colazione e della pasticceria artigianale di Tortatelier.",
+      "Scopri pasticcini, biscotti, croissant e altre specialità artigianali di Tortatelier, dalla colazione alla pasticceria.",
   },
   "/torte": {
-    title: "Torte personalizzate | Tortatelier",
+    title: "Torte personalizzate a Milano | Tortatelier",
     description:
-      "Scopri le torte artigianali personalizzate su ordinazione di Tortatelier.",
+      "Torte artigianali personalizzate su ordinazione a Milano, per compleanni e occasioni speciali. Scopri le creazioni di Tortatelier.",
   },
   "/catering": {
-    title: "Catering per eventi | Tortatelier",
+    title: "Catering per eventi a Milano | Tortatelier",
     description:
-      "Catering professionale per eventi con proposte artigianali dolci e salate, bevande e servizio di camerieri.",
+      "Catering per eventi a Milano con proposte artigianali dolci e salate, bevande e servizio di camerieri.",
   },
   "/natale": {
     title: "Specialità di Natale | Tortatelier",
@@ -89,7 +91,7 @@ export const seo = {
   "/contatti": {
     title: "Contatti e orari | Tortatelier",
     description:
-      "Contatta Tortatelier: indirizzo, telefono, orari di apertura e modulo per richiedere informazioni.",
+      "Trova Tortatelier in via Pietro Maroncelli a Milano: indirizzo, telefono, orari di apertura e contatti.",
   },
   "/privacy": {
     title: "Privacy Policy | Tortatelier",
@@ -102,3 +104,25 @@ export const seo = {
       "Informativa sull\u2019uso dei cookie del sito di Tortatelier.",
   },
 };
+
+export function getPageMetadata(pathname) {
+  const path = pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
+  const data = seo[path];
+  if (!data) return null;
+  const url = new URL(path === "/" ? "/" : `${path}/`, siteInfo.url).href;
+  const image = new URL(siteInfo.shareImage, siteInfo.url).href;
+  return {
+    ...data,
+    url,
+    openGraph: {
+      "og:title": data.title,
+      "og:description": data.description,
+      "og:url": url,
+      "og:image": image,
+      "og:image:alt": siteInfo.shareImageAlt,
+      "og:type": "website",
+      "og:site_name": siteInfo.name,
+      "og:locale": "it_IT",
+    },
+  };
+}
