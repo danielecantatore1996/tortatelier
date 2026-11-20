@@ -112,6 +112,13 @@ test('il pulsante Instagram precede le informazioni sulle consegne', async () =>
   assert.ok(button !== -1 && delivery !== -1 && button < delivery);
 });
 
+test('nella home il testo del catering precede la foto', async () => {
+  const html = await readFile(join('dist', 'index.html'), 'utf8');
+  const description = html.indexOf('Per i vostri eventi organizziamo catering');
+  const image = html.indexOf('alt="Tavolo catering con bicchieri e personale"');
+  assert.ok(description !== -1 && image !== -1 && description < image);
+});
+
 test('i nomi descrittivi diventano ALT e le nuove foto senza descrizione hanno un fallback', () => {
   assert.equal(photoAlt('../assets/catering/004-tavolo-con-bicchieri.jpeg', 'Foto catering 4'), 'Tavolo con bicchieri');
   assert.equal(photoAlt('../assets/catering/nuova-foto.webp', 'Foto catering 5'), 'Foto catering 5');

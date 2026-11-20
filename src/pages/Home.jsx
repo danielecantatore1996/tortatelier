@@ -53,13 +53,13 @@ export default function Home() {
 
       <section className="section home-catering">
         <div className="container home-catering__inner">
-          <Reveal className="home-catering__media">
-            <img src={cateringImage} alt="Tavolo catering con bicchieri e personale" loading="lazy" decoding="async" width="1024" height="1024" />
-          </Reveal>
-          <Reveal className="home-catering__text" delay={120}>
+          <Reveal className="home-catering__text">
             <SectionTitle align="left" eyebrow="I vostri eventi" title="Catering" />
             <p>Per i vostri eventi organizziamo catering con proposte artigianali dolci e salate, bevande e servizio di camerieri.</p>
             <Link to="/catering/" className="btn btn--dark">Scopri il catering <ArrowRight size={16} aria-hidden="true" /></Link>
+          </Reveal>
+          <Reveal className="home-catering__media" delay={120}>
+            <img src={cateringImage} alt="Tavolo catering con bicchieri e personale" loading="lazy" decoding="async" width="1024" height="1024" />
           </Reveal>
         </div>
       </section>
