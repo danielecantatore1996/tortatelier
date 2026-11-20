@@ -32,6 +32,8 @@ Il modulo contatti apre il programma email del visitatore con una bozza indirizz
 
 La build genera un file HTML per ogni percorso presente in `seo` in `src/data/siteInfo.js`, oltre alla sitemap e ai dati strutturati dell'attività. Quando si aggiunge una pagina, aggiungere anche il relativo percorso a `seo`. I vecchi collegamenti con `#/` vengono aperti automaticamente sul nuovo percorso.
 
+La build genera anche pagine di reindirizzamento per alcuni vecchi URL Shopify, elencati in `scripts/prerender.mjs`. Su GitHub Pages non sono redirect HTTP 301: usano un meta refresh immediato, che Google considera un segnale di reindirizzamento permanente. Per altri vecchi URL rilevati in Search Console, aggiungere alla lista solo quelli con una pagina attuale pertinente; i redirect non sono inclusi nella sitemap.
+
 Il progetto è configurato per la radice del dominio personalizzato, non per una sottocartella GitHub Pages. `public/CNAME` mantiene il dominio durante i deploy e `public/robots.txt` indica la sitemap: aggiornare entrambi se cambia il dominio.
 
 Per pubblicare, salvare e condividere prima le modifiche con il repository, quindi eseguire `npm run deploy`. Il comando ricostruisce il sito e pubblica `dist/` sul branch `gh-pages`; nelle impostazioni GitHub Pages occorre usare quel branch come sorgente e mantenere il dominio personalizzato. Dopo il deploy, verificare che la home, un percorso come `/torte/`, `/robots.txt` e `/sitemap.xml` siano raggiungibili via HTTPS.
@@ -42,4 +44,4 @@ Per pubblicare, salvare e condividere prima le modifiche con il repository, quin
 3. Nella sezione **Sitemap**, inviare `https://www.tortatelier.it/sitemap.xml` e controllarne lo stato. Usare **Controllo URL** sulle pagine principali e, se necessario, richiederne l'indicizzazione.
 4. Monitorare **Indicizzazione delle pagine**, **Rendimento** e **Segnali web essenziali**; i dati possono richiedere tempo. Per controlli di laboratorio e dati reali disponibili, usare anche [PageSpeed Insights](https://pagespeed.web.dev/).
 
-L'invio della sitemap non garantisce indicizzazione o posizionamento; Google decide tempi e risultati.
+Dopo il deploy, verificare con **Controllo URL** anche i vecchi indirizzi interessati e richiederne, se necessario, una nuova scansione. Google aggiorna autonomamente i collegamenti mostrati nei risultati: la modifica non è immediata e i tempi non sono garantiti. L'invio della sitemap non garantisce indicizzazione o posizionamento.

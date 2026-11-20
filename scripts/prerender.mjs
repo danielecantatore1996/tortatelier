@@ -78,6 +78,35 @@ try {
     await writeFile(join(directory, 'index.html'), html);
   }
 
+  const legacyRedirects = {
+    '/pages/galleria': '/torte/',
+    '/pages/chi-siamo': '/chi-siamo/',
+    '/collections/torte-moderne': '/torte/',
+    '/collections/torte': '/torte/',
+    '/collections/all/torta': '/torte/',
+    '/collections/all': '/prodotti/',
+    '/collections/frontpage': '/',
+  };
+  for (const [path, destination] of Object.entries(legacyRedirects)) {
+    if (!getPageMetadata(destination)) throw new Error(`Destinazione non valida per ${path}: ${destination}`);
+    const url = escapeHtml(new URL(destination, siteInfo.url).href);
+    const directory = join('dist', path.slice(1));
+    await mkdir(directory, { recursive: true });
+    await writeFile(join(directory, 'index.html'), `<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=${url}" />
+    <link rel="canonical" href="${url}" />
+    <title>Pagina spostata | Tortatelier</title>
+  </head>
+  <body>
+    <p>Questa pagina è stata spostata. <a href="${url}">Vai alla nuova pagina</a>.</p>
+  </body>
+</html>
+`);
+  }
+
   await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${escapeHtml(url)}</loc></url>`).join('\n')}\n</urlset>\n`);
 } finally {
   await rm(temporaryDirectory, { recursive: true, force: true });

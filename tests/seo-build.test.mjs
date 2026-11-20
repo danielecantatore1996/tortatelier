@@ -74,6 +74,25 @@ test('la sitemap elenca gli indirizzi reali e il dominio resta configurato', asy
   assert.equal((await readFile('dist/CNAME', 'utf8')).trim(), 'www.tortatelier.it');
 });
 
+test('i vecchi indirizzi Shopify rimandano alle pagine equivalenti', async () => {
+  for (const [path, destination] of [
+    ['pages/galleria', 'torte/'],
+    ['pages/chi-siamo', 'chi-siamo/'],
+    ['collections/torte-moderne', 'torte/'],
+    ['collections/torte', 'torte/'],
+    ['collections/all/torta', 'torte/'],
+    ['collections/all', 'prodotti/'],
+    ['collections/frontpage', ''],
+  ]) {
+    const html = await readFile(join('dist', path, 'index.html'), 'utf8');
+    const url = `https://www.tortatelier.it/${destination}`;
+    assert.ok(html.includes(`<meta http-equiv="refresh" content="0; url=${url}" />`), path);
+    assert.ok(html.includes(`<link rel="canonical" href="${url}" />`), path);
+    assert.ok(html.includes(`<a href="${url}">`), path);
+    await access(join('dist', destination, 'index.html'));
+  }
+});
+
 test('i nomi descrittivi diventano ALT e le nuove foto senza descrizione hanno un fallback', () => {
   assert.equal(photoAlt('../assets/catering/004-tavolo-con-bicchieri.jpeg', 'Foto catering 4'), 'Tavolo con bicchieri');
   assert.equal(photoAlt('../assets/catering/nuova-foto.webp', 'Foto catering 5'), 'Foto catering 5');
