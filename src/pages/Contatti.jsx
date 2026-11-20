@@ -168,6 +168,17 @@ export default function Contatti() {
                 </div>
               </li>
             </ul>
+            <div className="contact__actions">
+              <WhatsAppButton />
+              <a
+                className="btn btn--dark"
+                href={siteInfo.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Instagram size={18} aria-hidden="true" /> Seguici su Instagram
+              </a>
+            </div>
             <section className="delivery-info" aria-labelledby="delivery-info-title">
               <h2 id="delivery-info-title">
                 <Truck size={22} aria-hidden="true" /> Informazioni sulle consegne
@@ -183,17 +194,6 @@ export default function Contatti() {
                 </div>
               </dl>
             </section>
-            <div className="contact__actions">
-              <WhatsAppButton />
-              <a
-                className="btn btn--dark"
-                href={siteInfo.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Instagram size={18} aria-hidden="true" /> Seguici su Instagram
-              </a>
-            </div>
           </div>
 
           <form className="form" onSubmit={onSubmit} noValidate>
