@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Clock, Instagram, Truck } from "lucide-react";
 import PageHero from "../components/PageHero";
 import WhatsAppButton from "../components/WhatsAppButton";
-import { siteInfo } from "../data/siteInfo";
+import { siteInfo, mapsUrl } from "../data/siteInfo";
 
 const initial = {
   nome: "",
@@ -93,7 +93,7 @@ export default function Contatti() {
         text={
           <>
             Per informazioni, ordini o preventivi su torte personalizzate puoi
-            contattarci <strong>via email</strong>,{" "}
+            contattarci <strong>{siteInfo.email ? <a href={`mailto:${siteInfo.email}`}>via email</a> : "via email"}</strong>,{" "}
             <strong>tramite il modulo qui sotto</strong> o con un{" "}
             <strong>
               messaggio sulla nostra pagina{" "}
@@ -118,9 +118,16 @@ export default function Contatti() {
                 <div>
                   <h3>Indirizzo</h3>
                   <p>
-                    {siteInfo.address.street}
-                    <br />
-                    {siteInfo.address.city}
+                    <a
+                      href={mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${siteInfo.address.street}, ${siteInfo.address.city} su Google Maps (si apre in una nuova scheda)`}
+                    >
+                      {siteInfo.address.street}
+                      <br />
+                      {siteInfo.address.city}
+                    </a>
                   </p>
                 </div>
               </li>

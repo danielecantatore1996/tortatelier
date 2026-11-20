@@ -93,6 +93,18 @@ test('i vecchi indirizzi Shopify rimandano alle pagine equivalenti', async () =>
   }
 });
 
+test('l’indirizzo nel footer apre Google Maps', async () => {
+  const html = await readFile(join('dist', 'index.html'), 'utf8');
+  assert.match(html, /<a href="https:\/\/www\.google\.com\/maps\/search\/\?api=1&amp;query=Via%20Pietro%20Maroncelli%209%2C%2020154%20Milano"[^>]*>Via Pietro Maroncelli, 9<br\/>20154 Milano<\/a>/);
+});
+
+test('la pagina contatti collega indirizzo e email', async () => {
+  const html = await readFile(join('dist', 'contatti', 'index.html'), 'utf8');
+  assert.match(html, /<h3>Indirizzo<\/h3><p><a href="https:\/\/www\.google\.com\/maps\/search\/\?api=1&amp;query=Via%20Pietro%20Maroncelli%209%2C%2020154%20Milano"[^>]*>Via Pietro Maroncelli, 9<br\/>20154 Milano<\/a><\/p>/);
+  assert.match(html, /<a href="mailto:info@tortatelier\.it">via email<\/a>/);
+  assert.match(html, /<a href="mailto:info@tortatelier\.it">info@tortatelier\.it<\/a>/);
+});
+
 test('i nomi descrittivi diventano ALT e le nuove foto senza descrizione hanno un fallback', () => {
   assert.equal(photoAlt('../assets/catering/004-tavolo-con-bicchieri.jpeg', 'Foto catering 4'), 'Tavolo con bicchieri');
   assert.equal(photoAlt('../assets/catering/nuova-foto.webp', 'Foto catering 5'), 'Foto catering 5');

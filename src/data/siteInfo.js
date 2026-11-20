@@ -52,6 +52,8 @@ export const siteInfo = {
   ],
 };
 
+export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteInfo.mapsQuery)}`;
+
 export const navLinks = [
   { to: "/", label: "Home" },
   { to: "/chi-siamo/", label: "Chi siamo" },

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Instagram, MapPin, Phone, Mail } from 'lucide-react';
 import Logo from './Logo';
-import { siteInfo, navLinks } from '../data/siteInfo';
+import { siteInfo, navLinks, mapsUrl } from '../data/siteInfo';
 import '../styles/footer.css';
 
 export default function Footer() {
@@ -31,7 +31,7 @@ export default function Footer() {
         <div>
           <h2 className="footer__title">Contatti</h2>
           <ul className="footer__contacts">
-            <li><MapPin size={16} aria-hidden="true" /><span>{siteInfo.address.street}<br />{siteInfo.address.city}</span></li>
+            <li><MapPin size={16} aria-hidden="true" /><a href={mapsUrl} target="_blank" rel="noopener noreferrer" aria-label={`${siteInfo.address.street}, ${siteInfo.address.city} su Google Maps (si apre in una nuova scheda)`}>{siteInfo.address.street}<br />{siteInfo.address.city}</a></li>
             <li><Phone size={16} aria-hidden="true" /><a href={`tel:${siteInfo.phoneLink}`}>{siteInfo.phone}</a></li>
             <li><Mail size={16} aria-hidden="true" />{siteInfo.email ? <a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a> : <span>Email da inserire</span>}</li>
           </ul>
